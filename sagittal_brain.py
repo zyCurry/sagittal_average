@@ -8,12 +8,14 @@ for line in myfile.readlines():
 myfile.close()
 
 # Create new list to save the averages per each plane
+# The number of steps coronal planes may change in the future
+coronal_planes = 20
 sagittal_averages = []
 for i in range(20):
     total = 0
-    for j in range(20):
+    for j in range(coronal_planes):
         total = total + int(planes[i][j])
-    sagittal_averages.append(str(total/20))
+    sagittal_averages.append(str(total/coronal_planes))
 
 # write it out on my file
 myoutput = open('brain_average.csv', 'w')

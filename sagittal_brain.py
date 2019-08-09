@@ -1,13 +1,11 @@
 
 def run_averages():
     # Open the file to analyse
-    myfile = open('brain_sample.csv', 'r')
-
-    # Create a plane list to keep a list per row
-    planes = []
-    for line in myfile.readlines():
-        planes.append([int(x) for x in line.split("\n")[0].split(',')])
-    myfile.close()
+    with open('brain_sample.csv', 'r') as myfile:
+            # Create a plane list to keep a list per row
+            planes = []
+            for line in myfile.readlines():
+                planes.append([int(x) for x in line.split("\n")[0].split(',')])
 
     # Create new list to save the averages per each plane
     # The number of steps coronal planes may change in the future
@@ -20,9 +18,8 @@ def run_averages():
         sagittal_averages.append(str(total/coronal_planes))
 
     # write it out on my file
-    myoutput = open('brain_average.csv', 'w')
-    myoutput.write(','.join(sagittal_averages) +  '\n')
-    myoutput.close()
+    with open('brain_average.csv', 'w') as myoutput:
+             myoutput.write(','.join(sagittal_averages) +  '\n')
 
 if __name__ == "__main__":
     run_averages()

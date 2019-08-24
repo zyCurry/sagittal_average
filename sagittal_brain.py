@@ -1,7 +1,9 @@
 import numpy as np
 
-def run_averages():
+def run_averages(file_input, file_output):
     # Open the file to analyse
+    if file_input is None:
+        file_input = 'brain_sample.csv'
     with open('brain_sample.csv', 'r') as myfile:
             # Create a plane list to keep a list per row
             planes = []
@@ -23,8 +25,18 @@ def run_averages():
         sagittal_averages.append(str(total/coronal_planes))
 
     # write it out on my file
+    if file_output is None:
+        file_output = 'brain_average.csv'
     with open('brain_average.csv', 'w') as myoutput:
              myoutput.write(','.join(sagittal_averages) +  '\n')
 
 if __name__ == "__main__":
-    run_averages()
+    import sys
+    argumens = sys.argv
+    file_input = None
+    file_output = None
+    if len(argumens) > 1:
+         file_input = sys.argv[1]
+    if len(argumens) > 2:
+         file_output = sys.argv[2]
+    run_averages(file_input, file_output)

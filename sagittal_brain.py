@@ -26,14 +26,18 @@ def run_averages(file_input='brain_sample.csv', file_output='brain_average.csv')
              myoutput.write(','.join(averages) +  '\n')
 
 if __name__ == "__main__":
-    import sys
-    arguments = sys.argv
-    if len(arguments) == 1:
+    from argparse import ArgumentParser
+    parser = ArgumentParser()
+    parser.add_argument('file_input', nargs='?')
+    parser.add_argument('--file_output', '-o')
+    arguments = parser.parse_args()
+
+    if arguments.file_input and arguments.file_output:
+         run_averages(arguments.file_input, arguments.file_output)
+    elif arguments.file_input or arguments.file_output:
+         if arguments.file_input:
+             run_averages(arguments.file_input)
+         else:
+             run_averages(file_output=arguments.file_output)
+    else:
          run_averages()
-    elif len(arguments) == 2:
-         file_input = sys.argv[1]
-         run_averages(file_input)
-    if len(arguments) > 2:
-         file_input = sys.argv[1]
-         file_output = sys.argv[2]
-         run_averages(file_input, file_output)

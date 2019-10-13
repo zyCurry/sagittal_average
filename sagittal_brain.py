@@ -27,9 +27,9 @@ def run_averages(file_input='brain_sample.csv', file_output='brain_average.csv')
 
 if __name__ == "__main__":
     from argparse import ArgumentParser
-    parser = ArgumentParser()
-    parser.add_argument('file_input', nargs='?')
-    parser.add_argument('--file_output', '-o')
+    parser = ArgumentParser(description = "Calculates the average for each sagittal-horizontal plane.")
+    parser.add_argument('file_input', nargs='?', help="Input CSV file with the results from scikit-brain binning algorithm. If not provided it looks at brain_sample.csv")
+    parser.add_argument('--file_output', '-o', help="Name of the output CSV file. Defaults to brain_average.csv")
     arguments = parser.parse_args()
 
     if arguments.file_input and arguments.file_output:

@@ -18,12 +18,10 @@ def run_averages(file_input='brain_sample.csv', file_output='brain_average.csv')
     # let's use NumPy! It's faster!!
     planes = np.array(planes)
     averages = np.mean(planes, axis=0)
-    # Convert the np array into a list
-    averages = [str(x) for x in averages]
 
     # write it out on my file
     with open(file_output, 'w') as myoutput:
-             myoutput.write(','.join(averages) +  '\n')
+             np.savetxt(myoutput, averages.reshape((1, averages.shape[0])), fmt='%.1f', delimiter=',')
 
 if __name__ == "__main__":
     from argparse import ArgumentParser

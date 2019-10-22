@@ -9,14 +9,7 @@ def run_averages(file_input='brain_sample.csv', file_output='brain_average.csv')
     The result is an average for each sagittal/horizontal plane (rows)
     """
     # Open the file to analyse
-    with open(file_input, 'r') as myfile:
-            # Create a plane list to keep a list per row
-            planes = []
-            for line in myfile.readlines():
-                planes.append([int(x) for x in line.split("\n")[0].split(',')])
-
-    # let's use NumPy! It's faster!!
-    planes = np.array(planes)
+    planes = np.loadtxt(file_input, dtype=int,  delimiter=',')
     averages = np.mean(planes, axis=0)
 
     # write it out on my file

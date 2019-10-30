@@ -13,8 +13,7 @@ def run_averages(file_input='brain_sample.csv', file_output='brain_average.csv')
     averages = np.mean(planes, axis=0)
 
     # write it out on my file
-    with open(file_output, 'w') as myoutput:
-             np.savetxt(myoutput, averages.reshape((1, averages.shape[0])), fmt='%.1f', delimiter=',')
+    np.savetxt(file_output, averages.reshape((1, averages.shape[0])), fmt='%.1f', delimiter=',')
 
 if __name__ == "__main__":
     from argparse import ArgumentParser

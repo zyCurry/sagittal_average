@@ -16,18 +16,11 @@ def run_averages(file_input='brain_sample.csv', file_output='brain_average.csv')
     np.savetxt(file_output, averages.reshape((1, averages.shape[0])), fmt='%.1f', delimiter=',')
 
 if __name__ == "__main__":
-    from argparse import ArgumentParser
-    parser = ArgumentParser(description = "Calculates the average for each sagittal-horizontal plane.")
-    parser.add_argument('file_input', nargs='?', help="Input CSV file with the results from scikit-brain binning algorithm. If not provided it looks at brain_sample.csv")
-    parser.add_argument('--file_output', '-o', help="Name of the output CSV file. Defaults to brain_average.csv")
+    from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+    parser = ArgumentParser(description = "Calculates the average for each sagittal-horizontal plane.",
+                            formatter_class=ArgumentDefaultsHelpFormatter)
+    parser.add_argument('file_input', nargs='?', default="brain_sample.csv", help="Input CSV file with the results from scikit-brain binning algorithm. If not provided it looks at brain_sample.csv")
+    parser.add_argument('--file_output', '-o', default="brain_average.csv", help="Name of the output CSV file. Defaults to brain_average.csv")
     arguments = parser.parse_args()
 
-    if arguments.file_input and arguments.file_output:
-         run_averages(arguments.file_input, arguments.file_output)
-    elif arguments.file_input or arguments.file_output:
-         if arguments.file_input:
-             run_averages(arguments.file_input)
-         else:
-             run_averages(file_output=arguments.file_output)
-    else:
-         run_averages()
+    run_averages(arguments.file_input, arguments.file_output)

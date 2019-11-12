@@ -10,10 +10,13 @@ def run_averages(file_input='brain_sample.csv', file_output='brain_average.csv')
     """
     # Open the file to analyse
     planes = np.loadtxt(file_input, dtype=int,  delimiter=',')
-    averages = np.mean(planes, axis=0)
+
+    # Calculates the averages through the sagittal/horizontal planes
+    # and makes it as a row vector
+    averages = planes.mean(axis=0)[np.newaxis, :]
 
     # write it out on my file
-    np.savetxt(file_output, averages.reshape((1, averages.shape[0])), fmt='%.1f', delimiter=',')
+    np.savetxt(file_output, averages, fmt='%.1f', delimiter=',')
 
 if __name__ == "__main__":
     from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter

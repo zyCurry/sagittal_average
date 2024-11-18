@@ -1,6 +1,6 @@
 import numpy as np
 import os
-from sagittal_average import run_averages  # 假设你在 `sagittal_average` 包中定义了该函数
+from sagittal_brain.sagittal_brain import run_averages  # 假设你在 `sagittal_average` 包中定义了该函数
 
 def test_something():
     # 创建测试输入数据

@@ -1,0 +1,14 @@
+%%writefile sagittal_average/pyproject.toml
+
+[build-system]
+requires = ["numpy"]
+build-backend = "numpy.build_meta"
+
+[project]
+name = "sagittal_brain"
+version = "0.1.0"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  "src/sagittal_brain",
+]
